@@ -35,4 +35,9 @@ public class Inventory {
 		if(pillars == 4)return true;
 		return false;
 	}
+	
+	@Override
+	public String toString() {
+		return "\nHitpoints: " + player.getHitPoints() + "\nPillars: " + pillars + "\nHealing Potions: " + healingPotions + " (Type 'h' to use)" + "\nVision Potions: " + visionPotions + " (Type 'v' to use)\n";
+	}
 }
