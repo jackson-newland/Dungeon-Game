@@ -1,14 +1,15 @@
+package dungeon;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Dungeon2 {
+public class Dungeon {
 	private Room[][] maze = new Room[5][5];
 	private int entranceRow;
 	private int entranceCol;
 	private int currentRow;
 	private int currentCol;
 	
-	public Dungeon2() {
+	public Dungeon() {
 		ArrayList<Room> rooms = createAllRooms();
 		createDungeon(rooms);
 		setStartLocation();

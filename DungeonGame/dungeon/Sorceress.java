@@ -1,4 +1,4 @@
-package DungeonCharacters;
+package dungeon;
 
 /**
  * Title:
@@ -23,7 +23,7 @@ class Sorceress extends Hero {
     }
 
 
-    protected String attackDialogue() {
+    public String attackDialogue() {
         return " casts a spell of fireball at ";
 
     }

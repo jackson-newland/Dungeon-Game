@@ -1,4 +1,4 @@
-package DungeonCharacters;
+package dungeon;
 
 /**
  * Title:
@@ -19,7 +19,7 @@ class Warrior extends Hero {
     }
 
 
-    protected String attackDialogue() {
+    public String attackDialogue() {
         return " swings a mighty sword at ";
 
     }

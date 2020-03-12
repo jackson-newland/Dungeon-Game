@@ -1,3 +1,7 @@
+package dungeon;
+
+import java.util.Scanner;
+
 /**
  * Title: Dungeon.java
  * <p>
@@ -44,11 +48,7 @@
 
 */
 
-import DungeonCharacters.*;
-
-import java.util.Scanner;
-
-public class Dungeon {
+public class DungeonOld {
     public static void main(String[] args) {
         HeroFactory theHero = new HeroFactory();
         MonsterFactory theMonster = new MonsterFactory();

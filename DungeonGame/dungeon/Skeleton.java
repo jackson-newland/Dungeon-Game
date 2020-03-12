@@ -1,4 +1,4 @@
-package DungeonCharacters;
+package dungeon;
 
 /**
  * Title:
@@ -24,7 +24,7 @@ class Skeleton extends Monster {
     }
 
 
-    protected String attackDialogue() {
+    public String attackDialogue() {
         return " slices his rusty blade at ";
     }
 

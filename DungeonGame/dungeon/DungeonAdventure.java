@@ -1,3 +1,4 @@
+package dungeon;
 import java.util.*;
 public class DungeonAdventure {
 	private static Scanner kb = new Scanner(System.in);

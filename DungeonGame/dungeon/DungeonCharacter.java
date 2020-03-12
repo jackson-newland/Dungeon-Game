@@ -1,4 +1,4 @@
-package DungeonCharacters;
+package dungeon;
 
 /**
  * Title: DungeonCharacters.DungeonCharacter.java
@@ -34,7 +34,7 @@ package DungeonCharacters;
  * @version 1.0
  */
 
-abstract class DungeonCharacter {
+abstract class DungeonCharacter implements Attack {
 
     protected String name;
     protected int hitPoints;
@@ -103,7 +103,7 @@ abstract class DungeonCharacter {
     }
 
 
-    protected void attack(DungeonCharacter opponent) {
+    public void attack(DungeonCharacter opponent) {
         boolean canAttack;
         int damage;
 
@@ -127,7 +127,7 @@ abstract class DungeonCharacter {
 
     }
 
-    protected abstract String attackDialogue();
+    public abstract String attackDialogue();
 
     protected abstract void specialMove(DungeonCharacter opponent);
 

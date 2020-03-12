@@ -1,4 +1,4 @@
-package DungeonCharacters;
+package dungeon;
 
 import java.util.Scanner;
 
@@ -99,7 +99,20 @@ abstract class Hero extends DungeonCharacter {
     private int calcTurns(final int attackSpeedHero, final int attackSpeedMonster) {
         return attackSpeedHero / attackSpeedMonster;
     }
-
+    
+	public void fallsInPit() {
+		//set amount from 1 to 20
+		int amount =(int)(Math.random()*((20)-1))+1;
+		subtractHitPoints(amount);
+		if(isAlive()) {
+			System.out.println(name + " has FALLEN INTO A PIT! "+name+" takes <"+amount+"> damage. Current health is now "+hitPoints+".");
+		}
+		else {
+			System.out.println(name + " has FALLEN INTO A PIT! "+name+" takes <"+amount+"> damage. Current health is now 0.");
+		}
+	}
+	
+	
     protected abstract String specialOption();
 
 }

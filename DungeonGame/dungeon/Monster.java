@@ -1,4 +1,4 @@
-package DungeonCharacters;
+package dungeon;
 
 
 /**
@@ -49,7 +49,7 @@ abstract class Monster extends DungeonCharacter {
         heal();
     }
 
-    protected void attack(DungeonCharacter Opponent) {
+    public void attack(DungeonCharacter Opponent) {
         double specialChance = Math.random();
         if (specialChance <= .3) {
             specialMove(Opponent);

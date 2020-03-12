@@ -1,4 +1,4 @@
-package DungeonCharacters;
+package dungeon;
 
 /**
  * Title:
@@ -23,7 +23,7 @@ class Gremlin extends Monster {
     }
 
 
-    protected String attackDialogue() {
+    public String attackDialogue() {
         return " jabs his kris at ";
     }
 

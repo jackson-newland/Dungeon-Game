@@ -1,4 +1,4 @@
-package DungeonCharacters;
+package dungeon;
 
 /**
  * Title:
@@ -21,7 +21,7 @@ class Spongebob extends Hero {
     }
 
 
-    protected String attackDialogue() {
+    public String attackDialogue() {
         return " blows a bubble at ";
 
     }
