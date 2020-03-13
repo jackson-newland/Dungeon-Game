@@ -4,6 +4,7 @@ public class DungeonAdventure {
 	private static Scanner kb = new Scanner(System.in);
 	private static Dungeon d;
 	private static Hero theHero;
+	private static Inventory inventory;
 	
 	public static void main(String[] args) {
 		startGame();
@@ -12,14 +13,23 @@ public class DungeonAdventure {
 	
 	private static void startGame() {
 		info();
+		
+		HashChainAttack attackIndex = new HashChainAttack(3);
+		HashChainSpecial specialIndex = new HashChainSpecial(3);
+		
+        HeroFactory heroFactory = new HeroFactory(attackIndex, specialIndex);
+        MonsterFactory theMonster = new MonsterFactory(attackIndex, specialIndex);
+        
 		d = new Dungeon();
-		theHero = createHero();
+		theHero = heroFactory.getHero(chooseHero());
+		
+		inventory = new Inventory(theHero);
 		
 		System.out.println("\nWelcome "+theHero.getName()+". You have entered the first room.");
 		
 		do{
 			d.printCurrentRoom();
-			theHero.printStats();
+			System.out.println(inventory.toString());
 			String choice = getChoice();
 			System.out.println("\n\n--------------------------------------------------------------------\n");
 			performChoice(choice);
@@ -30,7 +40,7 @@ public class DungeonAdventure {
 	}
 	
 	private static boolean countinueGame() {
-		if(theHero.isDead()) {
+		if(!theHero.isAlive()) {
 			System.out.println("Uh oh, your Hero "+theHero.getName()+" has died. Better luck next time.");
 			return false;
 		}
@@ -47,17 +57,17 @@ public class DungeonAdventure {
 		else if(choice.equals("n")||choice.equals("s")||choice.equals("w")||choice.equals("e")) {
 			handleNewRoom(choice);
 		}
-		else if(choice.equals("h") && theHero.healingPotions()>0) {
-			theHero.useHealingPotion();
+		else if(choice.equals("h") && inventory.getHealingPotions()>0) {
+			inventory.useHealingPotion();
 		}
-		else if(choice.equals("h")&& theHero.healingPotions() == 0){
+		else if(choice.equals("h")&& inventory.getHealingPotions() == 0){
 			System.out.println(theHero.getName() + " has no healing potions in their inventory.");
 		}
-		else if(choice.equals("v") && theHero.visionPotions()>0) {
+		else if(choice.equals("v") && inventory.getVisionPotions()>0) {
 			d.useVisionPotion();
-			theHero.removeVisionPotion();
+			inventory.removeVisionPotion();
 		}
-		else if(choice.equals("v") && theHero.visionPotions()==0){
+		else if(choice.equals("v") && inventory.getVisionPotions()==0){
 			System.out.println(theHero.getName() + " has no vision potions in their inventory.");
 		}
 		else if(choice.equals("printmaze")) {//hidden option for testing
@@ -77,12 +87,12 @@ public class DungeonAdventure {
 		if(cr.hasPillar()) {
 			System.out.println(theHero.getName()+" has found a PILLAR OF OO in the room! "+theHero.getName()+" adds the pillar of "+cr.pillarName()+" to their inventory.");
 			cr.removePillar(cr.pillarName().toLowerCase());
-			theHero.addPillar();
+			inventory.addPillar();
 		}
 		else if(cr.isExit()) {System.out.println("You found the exit! (type 'exit' to leave the dungeon)");}
 		else if(cr.hasHealthPotion()) {
 			System.out.println(theHero.getName() + " has found a HEALING POTION in the room! "+theHero.getName()+" adds the healing potion to their inventory.");
-			theHero.addHealingPotion();
+			inventory.addHealingPotion();
 			cr.removeHealingPotion();
 		}
 		else if(cr.hasPit()) {
@@ -90,7 +100,7 @@ public class DungeonAdventure {
 		}
 		else if(cr.hasVisionPotion()) {
 			System.out.println(theHero.getName() + " has found a VISION POTION in the room! "+theHero.getName()+" adds the vision potion to their inventory.");
-			theHero.addVisionPotion();
+			inventory.addVisionPotion();
 			cr.removeVisionPotion();
 		}
 		
@@ -104,9 +114,9 @@ public class DungeonAdventure {
 		System.out.print("-->");
 		String c = kb.nextLine().toLowerCase();
 		if(c.equals("yes")||c.equals("y")) {
-			if(theHero.hasAllPillars()) {
+			if(inventory.hasAllPillars()) {
 				System.out.println("\n--------------------------------------------------------------------\n");
-				System.out.println("YOU WIN! Congratulations "+theHero.getName()+" you have conquered the maze!");
+				System.out.println("YOU WIN! Congratulations "+theHero.getName()+", you have conquered the maze!");
 				System.out.println("\n--------------------------------------------------------------------\n");
 				System.exit(0);
 			}
@@ -125,15 +135,6 @@ public class DungeonAdventure {
 		String choice = kb.nextLine();
 		choice = choice.toLowerCase();
 		return choice;
-		
-	}
-
-
-
-	private static Hero createHero() {
-		String name = createName();
-		
-		return new Hero(name);
 		
 	}
 	
@@ -179,5 +180,29 @@ public class DungeonAdventure {
 		System.out.println("Welcome to the Dungeon Maze.");
 		System.out.println("To quit at anytime just type 'quit'");
 	}
+	
+	public static int chooseHero() {
+        int choice;
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Choose a hero:\n" +
+                "1. Warrior\n" +
+                "2. Sorceress\n" +
+                "3. Thief\n" +
+                "4. SpongeBob\n");
+        System.out.print("Your choice: ");
+        choice = input.nextInt();
+        System.out.println();
+
+        return choice;
+    }
+
+    public static int generateMonster() {
+        int choice;
+
+        choice = (int) (Math.random() * 3) + 1;
+
+        return choice;
+    }
 
 }
