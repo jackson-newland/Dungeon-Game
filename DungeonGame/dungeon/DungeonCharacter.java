@@ -34,13 +34,15 @@ package dungeon;
  * @version 1.0
  */
 
-abstract class DungeonCharacter implements Attack {
+abstract class DungeonCharacter{
 
     protected String name;
     protected int hitPoints;
     protected int attackSpeed;
     protected double chanceToHit;
     protected int damageMin, damageMax;
+    protected AttackBehavior basicAttack;
+    protected SpecialBehavior special;
 
 
     public DungeonCharacter(String name, int hitPoints, int attackSpeed,
@@ -85,17 +87,14 @@ abstract class DungeonCharacter implements Attack {
             this.hitPoints -= hitPoints;
             if (this.hitPoints < 0)
                 this.hitPoints = 0;
-            System.out.println(getName() + " hit " +
+            System.out.println(getName() + " hit" +
                     " for <" + hitPoints + "> points damage.");
             System.out.println(getName() + " now has " +
                     getHitPoints() + " hit points remaining.");
-            System.out.println();
         }
 
         if (this.hitPoints == 0)
             System.out.println(name + " has been killed :-(");
-
-
     }
 
     public boolean isAlive() {
@@ -107,7 +106,7 @@ abstract class DungeonCharacter implements Attack {
         boolean canAttack;
         int damage;
 
-        System.out.println(name + attackDialogue() + opponent.getName() + ":");
+        System.out.println(name + basicAttack.attackDialogue() + opponent.getName() + ":");
 
         canAttack = Math.random() <= chanceToHit;
 
@@ -116,20 +115,17 @@ abstract class DungeonCharacter implements Attack {
                     + damageMin;
             opponent.subtractHitPoints(damage);
 
-
-            System.out.println();
         } else {
 
             System.out.println(getName() + "'s attack on " + opponent.getName() +
                     " failed!");
-            System.out.println();
         }
 
     }
-
-    public abstract String attackDialogue();
-
-    protected abstract void specialMove(DungeonCharacter opponent);
-
+    
+    protected void setAttacks(AttackBehavior ab, SpecialBehavior sb) {
+    	this.basicAttack = ab;
+    	this.special = sb;
+    }
 
 }

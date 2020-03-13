@@ -12,21 +12,9 @@ package dungeon;
 
 class Skeleton extends Monster {
 
-    public Skeleton() {
+    public Skeleton(AttackBehavior ab, SpecialBehavior sb) {
         super("Sargath the Skeleton", 100, 3, .8, .3, 30, 50, 30, 50);
-
+        super.setAttacks(ab, sb);
     }
-
-
-    protected void specialMove(DungeonCharacter opponent) {
-        System.out.println("Takes his arm off and swings it.");
-        opponent.subtractHitPoints(55);
-    }
-
-
-    public String attackDialogue() {
-        return " slices his rusty blade at ";
-    }
-
 
 }

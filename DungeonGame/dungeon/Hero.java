@@ -47,7 +47,7 @@ abstract class Hero extends DungeonCharacter {
         Scanner in = new Scanner(System.in);
         System.out.print("Enter character name: ");
         this.name = in.nextLine();
-
+        System.out.println();
     }
 
     public void subtractHitPoints(int hitPoints) {
@@ -73,19 +73,22 @@ abstract class Hero extends DungeonCharacter {
 
         do {
             System.out.println("1. Attack Opponent");
-            System.out.println("2. " + specialOption());
+            System.out.println("2. " + special.specialOption());
             System.out.print("Choose an option: ");
-            choice = inInt.nextInt();
-
+            String temp = inInt.nextLine();
+            choice = Integer.parseInt(temp);
+            System.out.println();
+            
             switch (choice) {
                 case 1:
                     attack(opponent);
+                    System.out.println();
                     break;
                 case 2:
-                    specialMove(opponent);
+                    special.specialMove(this, opponent);
                     break;
                 default:
-                    System.out.println("invalid choice!");
+                    System.out.println("invalid choice!\n");
             }
 
             numTurns--;
@@ -100,6 +103,10 @@ abstract class Hero extends DungeonCharacter {
         return attackSpeedHero / attackSpeedMonster;
     }
     
+    public void incrementNumTurns() {
+    	numTurns++;
+    }
+    
 	public void fallsInPit() {
 		//set amount from 1 to 20
 		int amount =(int)(Math.random()*((20)-1))+1;
@@ -111,8 +118,5 @@ abstract class Hero extends DungeonCharacter {
 			System.out.println(name + " has FALLEN INTO A PIT! "+name+" takes <"+amount+"> damage. Current health is now 0.");
 		}
 	}
-	
-	
-    protected abstract String specialOption();
 
 }

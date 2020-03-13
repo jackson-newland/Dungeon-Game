@@ -1,0 +1,8 @@
+FireBall
+BubbleBlow
+SwordSwing
+defaultAttack?
+
+ClubSwing
+KrisJab
+RustyBlade

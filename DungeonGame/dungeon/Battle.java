@@ -23,7 +23,7 @@ public class Battle {
 
             System.out.print("\n-->q to quit, anything else to continue: ");
             pause = input.next().charAt(0);
-
+            System.out.println();
         }
 
         if (!theMonster.isAlive())

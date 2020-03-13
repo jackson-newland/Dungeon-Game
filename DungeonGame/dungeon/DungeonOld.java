@@ -50,8 +50,12 @@ import java.util.Scanner;
 
 public class DungeonOld {
     public static void main(String[] args) {
-        HeroFactory theHero = new HeroFactory();
-        MonsterFactory theMonster = new MonsterFactory();
+    	
+    	HashChainAttack attackIndex = new HashChainAttack(3);
+		HashChainSpecial specialIndex = new HashChainSpecial(3);
+		
+        HeroFactory theHero = new HeroFactory(attackIndex, specialIndex);
+        MonsterFactory theMonster = new MonsterFactory(attackIndex, specialIndex);
         Battle arena = new Battle();
         do {
             arena.getBattle(theHero.getHero(chooseHero()), theMonster.getMonster(generateMonster()));
@@ -68,8 +72,10 @@ public class DungeonOld {
                 "1. Warrior\n" +
                 "2. Sorceress\n" +
                 "3. Thief\n" +
-                "4. SpongeBob");
+                "4. SpongeBob\n");
+        System.out.print("Your choice: ");
         choice = input.nextInt();
+        System.out.println();
 
         return choice;
     }

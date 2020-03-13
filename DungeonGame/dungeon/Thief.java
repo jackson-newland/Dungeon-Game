@@ -12,35 +12,9 @@ package dungeon;
 
 class Thief extends Hero {
 
-    public Thief() {
+    public Thief(AttackBehavior ab, SpecialBehavior sb) {
         super("Thief", 75, 6, .8, 20, 40, .5);
-
-
+        super.setAttacks(ab, sb);
     }
-
-
-    public String attackDialogue() {
-        return " attacks ";
-
-    }
-
-
-    protected void specialMove(DungeonCharacter opponent) {
-        double surprise = Math.random();
-        if (surprise <= .4) {
-            System.out.println("Surprise attack was successful!\n" +
-                    name + " gets an additional turn.");
-            numTurns++;
-            attack(opponent);
-        } else if (surprise >= .9) {
-            System.out.println("Uh oh! " + opponent.getName() + " saw you and" +
-                    " blocked your attack!");
-        } else
-            attack(opponent);
-
-    }
-
-    protected String specialOption() {
-        return " Surprise Attack\n";
-    }
+    
 }

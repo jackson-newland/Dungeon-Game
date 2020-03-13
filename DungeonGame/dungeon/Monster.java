@@ -39,7 +39,6 @@ abstract class Monster extends DungeonCharacter {
             addHitPoints(healPoints);
             System.out.println(name + " healed itself for " + healPoints + " points.\n"
                     + "Total hit points remaining are: " + hitPoints);
-            System.out.println();
         }
 
     }
@@ -52,7 +51,7 @@ abstract class Monster extends DungeonCharacter {
     public void attack(DungeonCharacter Opponent) {
         double specialChance = Math.random();
         if (specialChance <= .3) {
-            specialMove(Opponent);
+            special.specialMove(this, Opponent);
         } else {
             super.attack(Opponent);
         }

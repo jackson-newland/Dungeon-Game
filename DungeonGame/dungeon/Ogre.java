@@ -12,21 +12,9 @@ package dungeon;
 
 class Ogre extends Monster {
 
-    public Ogre() {
+    public Ogre(AttackBehavior ab, SpecialBehavior sb) {
         super("Oscar the Ogre", 200, 2, .6, .1, 30, 50, 30, 50);
-
-
+        super.setAttacks(ab, sb);
     }
-
-    protected void specialMove(DungeonCharacter opponent) {
-        System.out.println(this.getName() + " Sings All Star.");
-        opponent.subtractHitPoints(60);
-    }
-
-
-    public String attackDialogue() {
-        return " slowly swings a club toward's ";
-    }
-
-
+    
 }
