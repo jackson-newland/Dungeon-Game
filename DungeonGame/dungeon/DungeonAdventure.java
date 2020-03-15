@@ -18,7 +18,7 @@ public class DungeonAdventure {
 		HashChainSpecial specialIndex = new HashChainSpecial(3);
 		
         HeroFactory heroFactory = new HeroFactory(attackIndex, specialIndex);
-        MonsterFactory theMonster = new MonsterFactory(attackIndex, specialIndex);
+       
         
 		d = new Dungeon();
 		theHero = heroFactory.getHero(chooseHero());
@@ -102,6 +102,14 @@ public class DungeonAdventure {
 			System.out.println(theHero.getName() + " has found a VISION POTION in the room! "+theHero.getName()+" adds the vision potion to their inventory.");
 			inventory.addVisionPotion();
 			cr.removeVisionPotion();
+		}
+		
+		if(cr.isEntrance() || cr.isExit()) {
+			System.out.println("This is a safe room from monsters");
+		} else if (monsterChance() <= 3) {
+			System.out.println(theHero.getName() + " encounters a monster!");
+			cr.monsterRoom(theHero);
+			cr.removeMonster();
 		}
 		
 	}
@@ -197,12 +205,9 @@ public class DungeonAdventure {
         return choice;
     }
 
-    public static int generateMonster() {
-        int choice;
-
-        choice = (int) (Math.random() * 3) + 1;
-
-        return choice;
+    private static int monsterChance() {
+    	int roll = (int) (Math.random() * 10 ) + 1;
+    	return roll;
     }
 
 }

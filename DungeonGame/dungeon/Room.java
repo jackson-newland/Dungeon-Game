@@ -12,6 +12,7 @@ public class Room {
 	private boolean abstraction=false;
 	private boolean polymorphism=false;
 	private boolean encapsulation=false;
+	private boolean monster=false;
 	
 	
 	private boolean ndoor=true;
@@ -202,8 +203,27 @@ public class Room {
 
 	public void removeVisionPotion() {visionPotion = false;}
 
+	public void monsterRoom(Hero theHero) {
+		HashChainAttack attackIndex = new HashChainAttack(3);
+		HashChainSpecial specialIndex = new HashChainSpecial(3);
+		MonsterFactory theMonster = new MonsterFactory(attackIndex, specialIndex);
+		Battle arena = new Battle();
+		
+		arena.getBattle(theHero, theMonster.getMonster(generateMonster()));
+		
+		
+	}
 	
-	
+	public static int generateMonster() {
+        int choice;
+
+        choice = (int) (Math.random() * 3) + 1;
+
+        return choice;
+    }
+	public void removeMonster() {
+		monster = false;
+	}
 
 	
 	
