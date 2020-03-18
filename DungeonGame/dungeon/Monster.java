@@ -37,8 +37,8 @@ abstract class Monster extends DungeonCharacter {
         if (canHeal) {
             healPoints = (int) (Math.random() * (maxHeal - minHeal + 1)) + minHeal;
             addHitPoints(healPoints);
-            System.out.println(name + " healed itself for " + healPoints + " points.\n"
-                    + "Total hit points remaining are: " + hitPoints);
+            System.out.println("\n"+name + " healed itself for <" + healPoints + "> points.");
+            System.out.println(name + " now has "+hitPoints+" hit points remaining.");
         }
 
     }
@@ -56,5 +56,10 @@ abstract class Monster extends DungeonCharacter {
             super.attack(Opponent);
         }
     }
+
+	public void specialMove(DungeonCharacter Opponent) {
+		special.specialMove(this, Opponent);
+		
+	}
 
 }

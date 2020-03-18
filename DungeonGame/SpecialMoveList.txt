@@ -1,5 +1,5 @@
 HealSpell
-FIshingNet
+FishingNet
 CrushingBlow
 SurpriseAttack
 

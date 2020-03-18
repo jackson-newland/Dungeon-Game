@@ -25,9 +25,11 @@ public class HeroFactory {
 
             case 4:
                 return new Spongebob(attacks.get(new BubbleBlow()), specials.get(new FishingNet()));
+            case 5:
+            	return new OldMan(attacks.get(new CaneWack()), specials.get(new StealToiletPaper()));
 
             default:
-                System.out.println("invalid choice, returning DungeonCharacters.Thief");
+                System.out.println("invalid choice, returning Thief");
                 return new Thief(attacks.get(new DefaultAttack()), specials.get(new SurpriseAttack()));
         }
     }

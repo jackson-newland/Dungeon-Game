@@ -19,7 +19,7 @@ public class SurpriseAttack implements SpecialBehavior {
 
 	@Override
 	public String specialOption() {
-		return "Surprise Attack\n";
+		return "Surprise Attack";
 	}
 
 }

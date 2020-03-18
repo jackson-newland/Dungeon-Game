@@ -10,7 +10,7 @@ public class RoundhouseKick implements SpecialBehavior {
 
 	@Override
 	public String specialOption() {
-		return "Perform a Roundhouse Kick\n";
+		return "Perform a Roundhouse Kick";
 	}
 
 }

@@ -17,7 +17,7 @@ public class CrushingBlow implements SpecialBehavior {
 
 	@Override
 	public String specialOption() {
-		return "Crushing Blow on Opponent\n";
+		return "Crushing Blow on Opponent";
 	}
 
 }

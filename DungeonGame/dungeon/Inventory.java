@@ -23,6 +23,8 @@ public class Inventory {
 		int amount = calculateHealingAmount();
 		player.addHitPoints(amount);
 		healingPotions--;
+		System.out.println(player.getName()+" uses a healing potion.");
+		System.out.println(player.getName()+" health increased by <"+amount+">.");
 	}
 	
 	private int calculateHealingAmount() {

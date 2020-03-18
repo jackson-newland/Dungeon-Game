@@ -22,9 +22,12 @@ public class MonsterFactory {
 
             case 3:
                 return new Skeleton(attacks.get(new RustyBlade()), specials.get(new ArmSwing()));
-
+            case 4:
+            	return new Vampire(attacks.get(new DefaultAttack()), specials.get(new BloodSteal()));
+            case 5:
+            	return new DeadlyVirus(attacks.get(new DefaultAttack()), specials.get(new Infect()));
             default:
-                System.out.println("invalid choice, returning DungeonCharacters.Skeleton");
+                System.out.println("invalid choice, returning Skeleton");
                 return new Skeleton(attacks.get(new RustyBlade()), specials.get(new ArmSwing()));
         }
     }

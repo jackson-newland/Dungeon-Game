@@ -12,6 +12,7 @@ public class Room {
 	private boolean abstraction=false;
 	private boolean polymorphism=false;
 	private boolean encapsulation=false;
+	private boolean monster=false;
 	
 	
 	private boolean ndoor=true;
@@ -89,7 +90,7 @@ public class Room {
 	
 	private void setSpecialItem() {
 		float chance = r.nextFloat();
-		//50% chance of either
+		//33% chance of either
 		if(chance <= 0.33 && chance >= 0) {
 			setHealingPotion();
 		}
@@ -115,41 +116,7 @@ public class Room {
 		if(w==0)wdoor=false;
 	}
 	
-	public String toString() {
-		String result="";
-		if(ndoor)
-			result+="\n*-*";
-		else
-			result+="\n***";
-		if(wdoor)
-			result+="\n|";
-		else
-			result+="\n*";
-		if(entrance)result+="I";
-		else if(exit)result+="O";
-		else if(pit)result+="P";
-		else if(healingPotion)result+="H";
-		else if(visionPotion)result+="V";
-		//tester to see where crown pieces are located
-		else if(inheritance)result+="C";
-		else if(polymorphism)result+="C";
-		else if(abstraction)result+="C";
-		else if(encapsulation)result+="C";
-		
-		else {//if just an empty room
-			result+="E";
-		}
-		if(edoor)
-			result+="|\n";
-		else
-			result+="*\n";
-		if(sdoor)
-			result+="*-*";
-		else
-			result+="***";
-		return result;
-		
-	}
+	
 
 	public boolean hasSouthWall() {
 		if(sdoor == true)return false;
@@ -202,9 +169,75 @@ public class Room {
 
 	public void removeVisionPotion() {visionPotion = false;}
 
+	public void monsterRoom(Hero theHero) {
+		HashChainAttack attackIndex = new HashChainAttack(3);
+		HashChainSpecial specialIndex = new HashChainSpecial(3);
+		MonsterFactory theMonster = new MonsterFactory(attackIndex, specialIndex);
+		Battle arena = new Battle();
+		
+		arena.getBattle(theHero, theMonster.getMonster(generateMonster()));
+		
+		
+	}
 	
-	
+	public static int generateMonster() {
+        int choice;
 
+        choice = (int) (Math.random() * 5) + 1;
+        return choice;
+    }
+	public void removeMonster() {
+		monster = false;
+	}
+	
+	public String printRoom() {
+		if(entrance)return "I";
+		if(exit)return"O";
+		if(pit)return"P";
+		if(healingPotion)return"H";
+		if(visionPotion)return"V";
+		if(inheritance||polymorphism||abstraction||encapsulation)return"C";
+		else {
+			return "E";
+		}
+		
+	}
+	
+	public String toString() {
+		String result="";
+		if(ndoor)
+			result+="\n*-*";
+		else
+			result+="\n***";
+		if(wdoor)
+			result+="\n|";
+		else
+			result+="\n*";
+		if(entrance)result+="I";
+		else if(exit)result+="O";
+		else if(pit)result+="P";
+		else if(healingPotion)result+="H";
+		else if(visionPotion)result+="V";
+		//tester to see where crown pieces are located
+		else if(inheritance)result+="C";
+		else if(polymorphism)result+="C";
+		else if(abstraction)result+="C";
+		else if(encapsulation)result+="C";
+		
+		else {//if just an empty room
+			result+="E";
+		}
+		if(edoor)
+			result+="|\n";
+		else
+			result+="*\n";
+		if(sdoor)
+			result+="*-*";
+		else
+			result+="***";
+		return result;
+		
+	}
 	
 	
 	

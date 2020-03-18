@@ -19,6 +19,6 @@ public class HealSpell implements SpecialBehavior {
 	
 	@Override
 	public String specialOption() {
-		return "Increase Hit Points\n";
+		return "Increase Hit Points";
 	}
 }

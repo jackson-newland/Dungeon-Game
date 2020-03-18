@@ -10,7 +10,7 @@ public class Sings implements SpecialBehavior {
 
 	@Override
 	public String specialOption() {
-		return "Sing All Star\n";
+		return "Sing All Star";
 	}
 
 }

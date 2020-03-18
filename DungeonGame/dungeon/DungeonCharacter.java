@@ -80,21 +80,19 @@ abstract class DungeonCharacter{
     }
 
 
-    public void subtractHitPoints(int hitPoints) {
-        if (hitPoints < 0)
+    public void subtractHitPoints(int damage) {
+        if (damage < 0)
             System.out.println("Hitpoint amount must be positive.");
-        else if (hitPoints > 0) {
-            this.hitPoints -= hitPoints;
+        else if (damage > 0) {
+            this.hitPoints -= damage;
             if (this.hitPoints < 0)
                 this.hitPoints = 0;
             System.out.println(getName() + " hit" +
-                    " for <" + hitPoints + "> points damage.");
+                    " for <" + damage + "> points damage.");
             System.out.println(getName() + " now has " +
                     getHitPoints() + " hit points remaining.");
         }
 
-        if (this.hitPoints == 0)
-            System.out.println(name + " has been killed :-(");
     }
 
     public boolean isAlive() {
@@ -127,5 +125,12 @@ abstract class DungeonCharacter{
     	this.basicAttack = ab;
     	this.special = sb;
     }
+    
+    public boolean isOldMan() {
+		if(chanceToHit == 1.0) {
+			return true;
+		}
+		return false;
+	}
 
 }

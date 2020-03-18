@@ -79,12 +79,13 @@ public class Dungeon {
 	
 	//used for testing
 	public String printMaze() {
+		System.out.println("\nTHE MAZE:");
 		String result ="";
 		for(int r =0; r < maze.length;r++) {
 			for(int c =0;c<maze[r].length;c++) {
-				result+=maze[r][c];
+				result+=" "+maze[r][c].printRoom()+" ";
 			}
-			
+			result+="\n";
 		}
 		return result;
 	}
@@ -144,7 +145,7 @@ public class Dungeon {
 
 	public void useVisionPotion() {
 		Room[][] vision = fillVision();
-		printSurroundingDiagram(vision);
+		printDiagramInfo();
 		printVisionRooms(vision);
 	}
 
@@ -169,49 +170,34 @@ public class Dungeon {
 		return true;
 	}
 
-	private void printSurroundingDiagram(Room[][] vision) {
-		System.out.println("Using <VISION POTION>:");
-		System.out.println("'@' - Your current location");
-		System.out.println("'X' - Wall of maze");
-		System.out.println("The coordinates represent your surrounding rooms.\n");
+	private void printDiagramInfo() {
+		System.out.println("Using <VISION POTION>:\n");
+		System.out.println("@ - Your location");
+		System.out.println("X - Wall of maze");
+		System.out.println("P - Pit");
+		System.out.println("I - Entrance(In)");
+		System.out.println("O - Exit(Out)");
+		System.out.println("V - Vision Potion");
+		System.out.println("H - Healing Potion)");
+		System.out.println("C - A Pillar of OO");
+		System.out.println("E - Empty Room");
+		
+	}
+	private void printVisionRooms(Room[][] vision) {
+		System.out.println("\nYour Vision:");
 		for(int i = 0 ; i < vision.length;i++) {
 			for(int j = 0; j < vision[i].length; j++) {
-				if(i == 1 && j == 1)System.out.print("( @ )");
+				if(i == 1 && j == 1)System.out.print(" @ ");
 				else if(vision[i][j]!= null) {
-					System.out.print("("+i+","+j+")");
+					System.out.print(" "+vision[i][j].printRoom()+" ");
 				}
 				else {
-					System.out.print("( X )");
+					System.out.print(" X ");
 				}
 			}
 			System.out.print("\n");
 		}
 	}
-	
-	private void printVisionRooms(Room[][] vision) {
-		System.out.println("\nVIEW OF THE ROOMS:\n");
-		for(int i = 0;i < vision.length;i++) {
-			for(int j = 0; j < vision[i].length;j++) {
-				if(vision[i][j]!= null) {
-					System.out.println("Room ("+i+","+j+"):");
-					System.out.println(vision[i][j]);
-				}
-			}
-		}
-		
-		
-	}
-
-
-
-
-
-
-	
-	
-	
-			
-			
 
 	
 }//end class

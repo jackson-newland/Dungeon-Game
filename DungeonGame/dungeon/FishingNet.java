@@ -17,7 +17,7 @@ public class FishingNet implements SpecialBehavior {
 
 	@Override
 	public String specialOption() {
-		return "Use Net On Opponent\n";
+		return "Use Net On Opponent";
 	}
 
 }
