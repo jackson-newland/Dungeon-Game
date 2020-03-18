@@ -39,15 +39,13 @@ class DungeonTest {
     @Test
     public void testchooseHeroBadInt() {
         provideInput("10");
-        provideInput("4");
-
+        
         assertEquals(4, DungeonAdventure.chooseHero());
     }
     
     @Test
     public void testchooseHeroString() {
         provideInput("hello");
-        provideInput("4");
 
         assertEquals(4, DungeonAdventure.chooseHero());
     }
