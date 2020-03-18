@@ -118,7 +118,6 @@ public class DungeonAdventure {
 			System.out.println(theHero.getName() + " encounters a monster!");
 			cr.monsterRoom(theHero);
 			cr.removeMonster();
-<<<<<<< HEAD
 			if(theHero.isAlive())
 				chanceDrop();
 		}
@@ -137,8 +136,6 @@ public class DungeonAdventure {
 			System.out.println("The Monster drops a VISION POTION.");
 			System.out.println(theHero.getName()+" picks up the vision potion.");
 			inventory.addVisionPotion();
-=======
->>>>>>> 33ab4714e3f8ef0581ec832f608d4b380fc42170
 		}
 		
 	}
