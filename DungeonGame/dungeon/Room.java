@@ -182,6 +182,17 @@ public class Room {
 	
 	public static int generateMonster() {
         int choice;
+<<<<<<< HEAD
+=======
+
+        choice = (int) (Math.random() * 3) + 1;
+
+        return choice;
+    }
+	public void removeMonster() {
+		monster = false;
+	}
+>>>>>>> 33ab4714e3f8ef0581ec832f608d4b380fc42170
 
         choice = (int) (Math.random() * 5) + 1;
         return choice;
